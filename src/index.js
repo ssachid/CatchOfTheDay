@@ -1,14 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import {render} from 'react-dom';
+import './css/style.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import StorePicker from './StorePicker'
 
 const Root = () => {
   return (
-    "hello"
+    <StorePicker />
   )
 }
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+render(<App />, document.getElementById('main'));
 registerServiceWorker();
