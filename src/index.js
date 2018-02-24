@@ -4,12 +4,20 @@ import './css/style.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import StorePicker from './StorePicker'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NotFound from './NotFound';
 
 const Root = () => {
   return (
-    <StorePicker />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={StorePicker} />
+        <Route path="/store/:storeId" component={App} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
-render(<App />, document.getElementById('main'));
+render(<Root />, document.getElementById('main'));
 registerServiceWorker();
