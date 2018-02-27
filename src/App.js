@@ -20,8 +20,14 @@ class App extends React.Component {
  }
 
   componentWillMount() {
-    this.ref = base.syncState(`${this.props.history.location.pathname}/fishes`, { context: this, state: 'fishes' })
+    const { pathname } = this.props.history.location
+    this.ref = base.syncState(`${pathname}/fishes`, { context: this, state: 'fishes' })
 
+    const localStorageRef = localStorage.getItem(`order-${pathname}`);
+
+    if ( localStorageRef) {
+      this.setState({order: JSON.parse(localStorageRef)})
+    }
   }
 
  componentWillUnmount() {
