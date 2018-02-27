@@ -35,7 +35,7 @@ class App extends React.Component {
  }
 
  componentWillUpdate(nextProps, nextState) {
-  localStorate.setItem(`order-${this.props.history.location}`, JSON.stringify(nextState.order))
+  localStorage.setItem(`order-${this.props.history.location.pathname}`, JSON.stringify(nextState.order))
  }
 
   addFish(fish) {
