@@ -21,10 +21,15 @@ class App extends React.Component {
 
   componentWillMount() {
     this.ref = base.syncState(`${this.props.history.location.pathname}/fishes`, { context: this, state: 'fishes' })
+
   }
 
  componentWillUnmount() {
   base.removeBinding(this.ref);
+ }
+
+ componentWillUpdate(nextProps, nextState) {
+  localStorate.setItem(`order-${this.props.history.location}`, JSON.stringify(nextState.order))
  }
 
   addFish(fish) {
@@ -56,7 +61,7 @@ class App extends React.Component {
                   .map(key => <Fish key={key} index = {key} details={this.state.fishes[key]} addToOrder={this.addToOrder}/>)
              }
         </div>
-        <Order fishes = {this.state.fishes} order={this.state.order} />
+        <Order fishes = {this.state.fishes} order={this.state.order} history = {this.props.history.location} />
         <Inventory addFish = {this.addFish} loadSamples = { this.loadSamples }/>
       </div>
     )
