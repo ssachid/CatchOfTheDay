@@ -5,6 +5,7 @@ import Inventory from './Inventory';
 import SampleFishes from './sample-fishes';
 // import _ from 'lodash';
 import Fish from './Fish';
+import base from './base';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,14 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
+ }
+
+  componentWillMount() {
+    this.ref = base.syncState(`${this.props.history.location.pathname}/fishes`, { context: this, state: 'fishes' })
+  }
+
+ componentWillUnmount() {
+  base.removeBinding(this.ref);
  }
 
   addFish(fish) {
