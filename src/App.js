@@ -6,6 +6,7 @@ import SampleFishes from './sample-fishes';
 // import _ from 'lodash';
 import Fish from './Fish';
 import base from './base';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
   constructor(props) {
@@ -101,5 +102,9 @@ class App extends React.Component {
     )
   }
 }
+
+App.propTypes = {
+  params: React.PropTypes.object.isRequired
+};
 
 export default App;
