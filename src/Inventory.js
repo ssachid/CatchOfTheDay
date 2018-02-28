@@ -9,23 +9,23 @@ class Inventory extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
-    const fishes = {...this.state.fishes}
-
+  handleChange(e,key) {
+    const fish = this.props.fishes[key];
+    const updatedFish = { ...fish, [e.target.name]: e.target.value}
   }
 
   renderInventory(key) {
     const fish = this.props.fishes[key];
     return (
       <div className="fish-edit" key={key}>
-        <input type="text" name="name" value={fish.name} onChange={this.handleChange}/>
-        <input type="text" name="price" value={fish.price} onChange={this.handleChange}/>
-        <select type="text" name="status" value={fish.status} onChange={this.handleChange}>
+        <input type="text" name="name" value={fish.name} onChange={(e) => this.handleChange(e,key)}/>
+        <input type="text" name="price" value={fish.price} onChange={(e) => this.handleChange(e,key)}/>
+        <select type="text" name="status" value={fish.status} onChange={(e) => this.handleChange(e,key)}>
           <option value="available">Fresh!</option>
           <option value="unavailable">Sold Out!</option>
         </select>
-        <textarea type="text" name="desc" value={fish.desc} onChange={this.handleChange}></textarea>
-        <input type="text" name="image" value={fish.image} onChange={this.handleChange}/>
+        <textarea type="text" name="desc" value={fish.desc} onChange={(e) => this.handleChange(e,key)}></textarea>
+        <input type="text" name="image" value={fish.image} onChange={(e) => this.handleChange(e,key)}/>
       </div>
     )
   }
